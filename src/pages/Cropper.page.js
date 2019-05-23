@@ -603,7 +603,7 @@ class CropperPage extends Component {
           rotatedUri,
           cropData,
           (croppedUri) => {
-            this.props.onDone(croppedUri);
+            this.props.onDone(croppedUri, cropData);
           },
           (err) => {
             console.log('cropping error');
