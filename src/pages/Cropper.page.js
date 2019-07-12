@@ -301,19 +301,19 @@ class CropperPage extends Component {
 
   isAllowedToMoveTopSide = (gesture) => {
     return this.state.topPosition.y._offset + gesture.dy >= this.state.TOP_LIMIT - this.props.BORDER_WIDTH &&
-      this.state.topPosition.y._offset + gesture.dy + this.props.BORDER_WIDTH + 1 < this.state.bottomPosition.y._offset;
+      this.state.topPosition.y._offset + gesture.dy + this.props.BORDER_WIDTH + 1  + this.props.minimumSize < this.state.bottomPosition.y._offset;
   }
   isAllowedToMoveLeftSide = (gesture) => {
     return this.state.leftPosition.x._offset + gesture.dx >= this.state.LEFT_LIMIT - this.props.BORDER_WIDTH &&
-      this.state.leftPosition.x._offset + gesture.dx + this.props.BORDER_WIDTH + 1 < this.state.rightPosition.x._offset;
+      this.state.leftPosition.x._offset + gesture.dx + this.props.BORDER_WIDTH + 1  + this.props.minimumSize < this.state.rightPosition.x._offset;
   }
   isAllowedToMoveBottomSide = (gesture) => {
     return this.state.bottomPosition.y._offset + gesture.dy <= SCREEN_HEIGHT - this.state.BOTTOM_LIMIT &&
-        this.state.topPosition.y._offset + this.props.BORDER_WIDTH + 1 < this.state.bottomPosition.y._offset + gesture.dy;
+        this.state.topPosition.y._offset + this.props.BORDER_WIDTH + 1  + this.props.minimumSize < this.state.bottomPosition.y._offset + gesture.dy;
   }
   isAllowedToMoveRightSide = (gesture) => {
     return this.state.rightPosition.x._offset + gesture.dx <= SCREEN_WIDTH - this.state.RIGHT_LIMIT &&
-        this.state.leftPosition.x._offset + this.props.BORDER_WIDTH + 1 < this.state.rightPosition.x._offset + gesture.dx;
+        this.state.leftPosition.x._offset + this.props.BORDER_WIDTH + 1  + this.props.minimumSize < this.state.rightPosition.x._offset + gesture.dx;
   }
 
   isAllowedToMove = (position, gesture) => {
@@ -594,11 +594,12 @@ class CropperPage extends Component {
       size: { width, height },
       resizeMode: 'stretch'
     };
+
     RNImageRotate.rotateImage(
       this.props.imageUri,
       this.state.rotation,
       (rotatedUri) => {
-        //
+
         ImageEditor.cropImage(
           rotatedUri,
           cropData,
@@ -624,6 +625,7 @@ class CropperPage extends Component {
       <Cropper
         imageUri={this.props.imageUri} // 'https://3.imimg.com/data3/SN/NO/MY-10244508/vertical-building-parking-500x500.jpg'
         footerComponent={this.props.footerComponent}
+        headerComponent={this.props.headerComponent}
         getTopOuterStyle={this.getTopOuterStyle}
         getLeftOuterStyle={this.getLeftOuterStyle}
         getBottomOuterStyle={this.getBottomOuterStyle}
@@ -665,6 +667,7 @@ class CropperPage extends Component {
 
 CropperPage.propTypes = {
   footerComponent: PropTypes.object,
+  headerComponent: PropTypes.object,
   onDone: PropTypes.func,
   onCancel: PropTypes.func,
   imageUri: PropTypes.string,

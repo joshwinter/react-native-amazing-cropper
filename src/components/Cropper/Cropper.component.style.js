@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { SCREEN_WIDTH, SCREEN_HEIGHT, W, Q } from './Cropper.constants';
+import { SCREEN_WIDTH, SCREEN_HEIGHT, W } from './Cropper.constants';
 
 export default StyleSheet.create({
   container: {
@@ -16,11 +16,17 @@ export default StyleSheet.create({
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
   },
+  headerContainer: {
+    position: 'absolute',
+    top: 0,
+    width: W,
+    zIndex: 999
+  },
   footerContainer: {
-    position: 'absolute', 
-    top: SCREEN_HEIGHT - Q, 
-    bottom: 0, 
-    width: W
+    position: 'absolute',
+    bottom: 0,
+    width: W,
+    zIndex: 999
   },
   gridRow: {
     flex: 1,
@@ -92,28 +98,5 @@ export default StyleSheet.create({
     width: 30,
     height: 30,
     borderColor: 'white'
-  },
-  
-  
-  icon: {
-    paddingRight: 10,
-    flexDirection: 'row',
-  },
-  zoomNavBar: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#5a2480',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    bottom: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    paddingHorizontal: 20
-  },
-  rightNav: {
-    flexDirection: 'row',
-  },
+  }
 });

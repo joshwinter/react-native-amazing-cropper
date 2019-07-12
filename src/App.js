@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Cropper from './pages/Cropper.page';
-import DefaultFooter from './components/Footer/DefaultFooter.component';
 
 const App = (props) => (
   <Cropper
     footerComponent={props.footerComponent}
+    headerComponent={props.headerComponent}
     onDone={props.onDone}
     onCancel={props.onCancel}
     imageUri={props.imageUri}
     imageWidth={props.imageWidth}
+    minimumSize={props.minimumSize}
     imageHeight={props.imageHeight}
     TOP_VALUE={props.TOP_VALUE}
     LEFT_VALUE={props.LEFT_VALUE}
@@ -21,13 +22,14 @@ const App = (props) => (
   />
 )
 
-
 App.propTypes = {
   footerComponent: PropTypes.object,
+  headerComponent: PropTypes.object,
   onDone: PropTypes.func,
   onCancel: PropTypes.func,
   imageUri: PropTypes.string,
   imageWidth: PropTypes.number,
+  minimumSize: PropTypes.number,
   imageHeight: PropTypes.number,
   TOP_VALUE: PropTypes.number,
   LEFT_VALUE: PropTypes.number,
@@ -39,25 +41,21 @@ App.propTypes = {
 };
 
 App.defaultProps = {
-  footerComponent: (
-    <DefaultFooter
-      doneText='DONE'
-      rotateText='ROTATE'
-      cancelText='CANCEL'
-    />
-  ),
+  footerComponent: null,
+  headerComponent: null,
   onDone: () => {},
   onCancel: () => {},
   imageUri: '',
   imageWidth: 1280,
   imageHeight: 747,
+  minimumSize: 75,
   TOP_VALUE: 0,
   LEFT_VALUE: 0,
   BOTTOM_VALUE: 0,
   RIGHT_VALUE: 0,
   initialRotation: 0,
   NOT_SELECTED_AREA_OPACITY: 0.5,
-  BORDER_WIDTH: 50
+  BORDER_WIDTH: 40
 };
 
 export default App;

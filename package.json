@@ -1,6 +1,6 @@
 {
   "name": "react-native-amazing-cropper-min",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Custom react native cropper with rotation",
   "main": "index.js",
   "scripts": {
